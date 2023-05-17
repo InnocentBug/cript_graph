@@ -1,5 +1,6 @@
 import networkx as nx
 
+
 def get_networkx_graph(root_node) -> nx.DiGraph:
     """
     This function converts a cript node graph into a networkx DiGraph.
@@ -22,7 +23,8 @@ def get_networkx_graph(root_node) -> nx.DiGraph:
 
 def get_dot_graph(graph, include_in_label=["node", "name", "key"]):
     """
-    Converts a networkx representation (see `get_networkx_graph`) of a CRIPT data graph into a description of the Graphiz Dot language (https://www.graphviz.org/doc/info/lang.html).
+    Converts a networkx representation (see `get_networkx_graph`) of a CRIPT data graph
+    into a description of the Graphiz Dot language (https://www.graphviz.org/doc/info/lang.html).
     This can subsequently vizualized via the graphiz `dot` or related tools.
 
     The aim of this vizualization is to check graphs for correctness and intent.
