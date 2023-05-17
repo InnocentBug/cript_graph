@@ -28,6 +28,8 @@ jobs:
           git clone https://github.com/C-Accel-CRIPT/Python-SDK
           cd Python-SDK
           python3 -m pip install .
+          cd ..
+          rm -r Python-SDK
       - name: Install via Pip
         run: python3 -m pip install .
       - name: Check installation
