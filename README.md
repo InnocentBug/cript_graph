@@ -1,78 +1,87 @@
-# CRIPT Graph operation Plugin for the Python SDK
+# CRIPT Graph Operation Plugin for the Python SDK
 
-This is a plugin designed to operate in tandem with the Python SDK of the CRIPT project.
-The Python SDK can be found here: https://github.com/C-Accel-CRIPT/Python-SDK
-And more information about the CRIPT project in general can be found here: https://criptapp.org/
-And the corresponding scientific publication: [Walsh, D. J., Zou, W., Schneider, L., Mello, R., Deagen, M. E., Mysona, J., ... & Olsen, B. D. (2023). Community Resource for Innovation in Polymer Technology (CRIPT): A Scalable Polymer Material Data Structure.] (https://pubs.acs.org/doi/full/10.1021/acscentsci.3c00011)
+This repository contains a plugin designed to work with the Python SDK of the CRIPT project. The CRIPT project is an innovative initiative in polymer technology. For more information about the project, please visit the [CRIPT website](https://criptapp.org/).
 
-This plugin a number of helper functions, that can make dealing with the data graphs of CRIPT significantly easier.
+The Python SDK, which this plugin complements, can be found [here](https://github.com/C-Accel-CRIPT/Python-SDK). It provides a powerful set of tools for working with CRIPT data graphs.
 
-## NetworkX graphs
+## Installation
 
-[NetworkX](https://networkx.org/) is a popular python package for dealing with graphs.
-This plugin offers a conversion function, that converts a CRIPT SDK data graph into a networkx graph.
+To install the CRIPT Graph Operation Plugin, you can use `pip`:
+
+```shell
+pip install cript-graph
+```
+
+## NetworkX Graph Conversion
+
+The plugin offers a convenient conversion function to convert a CRIPT SDK data graph into a NetworkX graph. [NetworkX](https://networkx.org/) is a widely-used Python package for graph operations.
+
+Here's an example of how to use the conversion function:
 
 ```python
 import cript
 import cript_graph
 
 with cript.API(None, None) as api:
-   # CRIPT SDK code to build (or download) the data graph
-   project = cript.Project(...)
-   # ...
-   networkx_graph = cript_graph.get_networkx_graph(project)
-   # Networkx graph operations
-   print(netowrkx_graph.nodes)
-   print(netowrkx_graph.edges)
+    # CRIPT SDK code to build or download the data graph
+    project = cript.Project(...)
+    # ...
+    networkx_graph = cript_graph.get_networkx_graph(project)
+    # Perform NetworkX graph operations
+    print(networkx_graph.nodes)
+    print(networkx_graph.edges)
 ```
 
-See documentation of `get_networkx_graph` for details about the resulting graph.
+Please refer to the documentation of the `get_networkx_graph` function for detailed information about the resulting graph.
 
-## Graphiz Dot vizualization
+## Graphviz Dot Visualization
 
-Vizualizing the entire data graph of CRIPT can be challenging.
-The website front-end offers an amazing graph view, but sometimes more details are required.
-For example for debugging.
+Visualizing the entire data graph of CRIPT can sometimes be challenging, especially when more detailed information is required, such as for debugging purposes. In such cases, the Graphviz dot tool can be a valuable resource.
 
-In this situation, it can be helpful to use this provide tool to generate a visual representation of the data graph.
-For this we identify the [Graphviz](https://graphviz.org/) dot tool as helpful.
+The plugin provides a tool to generate a visual representation of the data graph using the Graphviz dot language.
+
+Here's an example of how to generate a dot file using the plugin:
 
 ```python
 import cript
 import cript_graph
 
 with cript.API(None, None) as api:
-   # CRIPT SDK code to build (or download) the data graph
-   project = cript.Project(...)
-   # ...
-   # Create intermediate networkx graph
-   networkx_graph = cript_graph.get_networkx_graph(project)
-   # Generate the graph representation in the dot language
-   dot_string = cript_graph.get_dot_graph(graph)
+    # CRIPT SDK code to build or download the data graph
+    project = cript.Project(...)
+    # ...
+    # Create an intermediate NetworkX graph
+    networkx_graph = cript_graph.get_networkx_graph(project)
+    # Generate the graph representation in the dot language
+    dot_string = cript_graph.get_dot_graph(networkx_graph)
 ```
 
-This [dot language](https://graphviz.org/doc/info/lang.html) string can either be written to disk
+You can write the resulting dot language string to a file:
 
 ```python
-with open("graph.dot", "w") file_handle:
-   file_hanle.write(dot_string)
+with open("graph.dot", "w") as file_handle:
+    file_handle.write(dot_string)
 ```
 
-And then converted into an SVG graph on the command line
+To convert the dot file to an SVG graph using the Graphviz command line tool:
 
-```bash
+```shell
 dot -Tsvg graph.dot > graph.svg
 ```
 
-Or [pydot](https://github.com/pydot/pydot) can be used to handle the generation of the vizualization from inside python.
+Alternatively, you can use the [pydot](https://github.com/pydot/pydot) package to handle the generation of the visualization from within Python:
 
 ```python
-import pydo
+import pydot
+
 pydot_graph = pydot.graph_from_dot_data(dot_string)
 pydot_graph.write_svg("graph.svg")
 ```
 
-A resulting graph might look like:
+An example graph of CRIPT visualized using Graphviz dot:
 
-![Example Graph of CRIPT vizualized via Graphviz dot](./assests/graph.svg)
-<img src="./assests/graph.svg">
+![Example Graph of CRIPT visualized via Graphviz dot](assets/graph.svg)
+
+## References
+
+[Walsh, D. J., Zou, W., Schneider, L., Mello, R., Deagen, M. E., Mysona, J., ... & Olsen, B. D. (2023). Community Resource for Innovation in Polymer Technology (CRIPT): A Scalable Polymer Material Data Structure.](https://pubs.acs.org/doi/full/10.1021/acscentsci.3c00011)
