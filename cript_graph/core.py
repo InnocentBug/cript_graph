@@ -76,8 +76,7 @@ def get_networkx_graph(root_node) -> nx.DiGraph:
             for attr in attr_list:
                 if isinstance(attr, cript.nodes.core.BaseNode):
                     G = add_node(G, attr)
-                    if node != attr:
-                        G.add_edge(node, attr, attribute=field)
+                    G.add_edge(node, attr, attribute=field)
         return G
 
     G = nx.DiGraph()
