@@ -1,0 +1,38 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - trunk-merge/**
+  pull_request:
+    branches:
+      - main
+      - develop
+      - trunk-merge/**
+
+jobs:
+  install:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        python-version: [3.7, 3.11]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: install cript manually
+        run: |
+          git clone https://github.com/C-Accel-CRIPT/Python-SDK
+          cd Python-SDK
+          python3 -m pip install .
+          cd ..
+          rm -r Python-SDK
+      - name: Install via Pip
+        run: python3 -m pip install .
+      - name: Check installation
+        run: |
+          python3 -m pip install pytest
+          python3 -m pytest
