@@ -1,6 +1,8 @@
+from math import sqrt
+
 import cript
 import networkx as nx
-from math import sqrt
+
 
 def _determine_darkness_from_hex(color):
     """
@@ -40,6 +42,7 @@ CRIPT_colors = {
     "Software": "#FFFFFF",
 }
 
+
 def get_networkx_graph(root_node) -> nx.DiGraph:
     """
     This function converts a cript node graph into a networkx DiGraph.
@@ -57,6 +60,7 @@ def get_networkx_graph(root_node) -> nx.DiGraph:
          The nodes are the actual python objects and no further node attributes are available.
          Edges carry an `attribute` that labels the attribute of the parent node which connects them.
     """
+
     def add_node(G, node):
         """
         Helper function, that adds a node and all its edges to graph.
@@ -79,7 +83,6 @@ def get_networkx_graph(root_node) -> nx.DiGraph:
     G = nx.DiGraph()
     add_node(G, root_node)
     return G
-
 
 
 def get_dot_graph(graph, include_in_label=["node_type", "name", "key"]):

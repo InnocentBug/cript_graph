@@ -1,8 +1,11 @@
-import pydot
 import copy
-import pytest
+
 import cript
+import pydot
+import pytest
+
 import cript_graph
+
 
 @pytest.fixture(scope="session")
 def cript_api():
@@ -14,6 +17,7 @@ def cript_api():
     """
     with cript.API(host=None, token=None) as api:
         yield api
+
 
 @pytest.fixture(scope="function")
 def example_cript_graph(cript_api):
@@ -43,10 +47,12 @@ def networkx_graph(example_cript_graph):
     graph = cript_graph.get_networkx_graph(example_cript_graph)
     return graph
 
+
 def test_networkx_graph(networkx_graph):
     graph = networkx_graph
     assert len(graph.nodes) == 8
     assert len(graph.edges) == 9
+
 
 def test_dot_graph(networkx_graph):
     graph = networkx_graph
