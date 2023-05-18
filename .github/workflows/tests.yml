@@ -34,5 +34,7 @@ jobs:
         run: python3 -m pip install .
       - name: Check installation
         run: |
-          python3 -m pip install pytest
+          python3 -m pip install -r tests/requirements.txt
+          export CRIPT_TOKEN="125433546"
+          export CRIPT_HOST="http://development.api.mycriptapp.org/"
           python3 -m pytest
