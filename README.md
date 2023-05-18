@@ -1,7 +1,7 @@
 # CRIPT Graph Operation Plugin for the Python SDK
 
 [![CI Tests](https://github.com/InnocentBug/cript_graph/actions/workflows/tests.yml/badge.svg)](https://github.com/InnocentBug/cript_graph/actions/workflows/tests.yml)
-[![[trunk.io](https://trunk.io) check](https://github.com/InnocentBug/cript_graph/actions/workflows/trunk.yml/badge.svg)](https://github.com/InnocentBug/cript_graph/actions/workflows/trunk.yml)
+[![[trunk](https://trunk.io) check](https://github.com/InnocentBug/cript_graph/actions/workflows/trunk.yml/badge.svg)](https://github.com/InnocentBug/cript_graph/actions/workflows/trunk.yml)
 
 This repository contains a plugin designed to work with the Python SDK of the CRIPT project. The CRIPT project is an innovative initiative in polymer technology. For more information about the project, please visit the [CRIPT website](https://criptapp.org/).
 
