@@ -1,0 +1,25 @@
+name: PyPI
+
+on:
+  push:
+    branches: main
+
+jobs:
+  PyPI:
+    name: publish with PyPI
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/cript-graph
+    permissions:
+      id-token: write # IMPORTANT: this permission is mandatory for trusted publishing
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install via Pip
+        run: python3 -m pip install .
+      - name: Build Dist
+        run: |
+          pip install build
+          python -m build --sdist .
+          python -m build --wheel .
